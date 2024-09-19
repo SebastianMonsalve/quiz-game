@@ -1,0 +1,74 @@
+.button-container {
+  width: 12.5rem;
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--blue-light);
+  position: relative;
+  border: none;
+  cursor: pointer;
+}
+.button-container::before,
+.button-container::after {
+  content: "";
+  position: absolute;
+  border-top: 2.3rem solid transparent;
+  border-bottom: 2.3rem solid transparent;
+}
+.button-container::before {
+  top: 0;
+  left: -2.2rem;
+  border-right: 2.3rem solid var(--blue-light);
+}
+.button-container::after {
+  top: 0;
+  right: -2.2rem;
+  border-left: 2.3rem solid var(--blue-light);
+}
+.button-container:hover .button {
+  background-color: var(--blue-hover);
+  transition: all 0.3s;
+}
+.button-container:hover .button::after {
+  border-left: 2rem solid var(--blue-hover);
+  transition: all 0.3s;
+}
+.button-container:hover .button::before {
+  border-right: 2rem solid var(--blue-hover);
+  transition: all 0.3s;
+}
+.button {
+  width: 12rem;
+  height: 4rem;
+  position: relative;
+  background-color: var(--blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.button::before,
+.button::after {
+  content: "";
+  position: absolute;
+  border-top: 2rem solid transparent;
+  border-bottom: 2rem solid transparent;
+  transition: all 0.3s;
+}
+.button::before {
+  z-index: 1;
+  top: 0;
+  left: -2rem;
+  border-right: 2rem solid var(--blue);
+}
+.button::after {
+  z-index: 1;
+  top: 0;
+  right: -2rem;
+  border-left: 2rem solid var(--blue);
+}
+.button p {
+  font-size: 1.6em;
+}
