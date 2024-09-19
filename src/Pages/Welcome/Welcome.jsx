@@ -1,7 +1,6 @@
-import React from "react";
 import "./Welcome.css";
 import Button from "../../Components/Button/Button";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -10,6 +9,14 @@ const Welcome = () => {
   };
   const questionsClick = () => {
     navigate("/questions");
+  };
+  const playAudio = () => {
+    const audio = new Audio("/Begin.mp3");
+    audio.play();
+  };
+  const instructionsAudio = () => {
+    const audio = new Audio("/Statistics.mp3");
+    audio.play();
   };
   return (
     <div className="welcome">
@@ -20,8 +27,20 @@ const Welcome = () => {
         draggable="false"
       />
       <div className="button-welcome-container">
-        <Button name="Instrucciones" onClick={instructionsClick} />
-        <Button name="Jugar" onClick={questionsClick} />
+        <Button
+          name="Instrucciones"
+          onClick={() => {
+            instructionsClick();
+            instructionsAudio();
+          }}
+        />
+        <Button
+          name="Jugar"
+          onClick={() => {
+            questionsClick();
+            playAudio();
+          }}
+        />
       </div>
       <a
         href="https://sebastianmonsalve.netlify.app/"
