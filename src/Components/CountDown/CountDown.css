@@ -1,0 +1,19 @@
+.countdown {
+  position: absolute;
+  top: 0;
+  width: 12rem;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  color: var(--blue-light);
+  font-weight: 600;
+  font-size: 2em;
+  background-color: var(--blue);
+  border: 0.3rem solid var(--blue-light);
+  border-top: none;
+}

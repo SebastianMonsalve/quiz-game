@@ -64,17 +64,17 @@
   border-left: 4.3rem solid var(--blue-light);
 }
 
-.button-container:hover .button {
+.button-container:hover {
   background-color: var(--blue-hover);
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
-.button-container:hover .button::after {
-  border-left: 2rem solid var(--blue-hover);
-  transition: all 0.3s;
+.button-container:hover::after {
+  border-left-color: var(--blue-hover);
+  transition: all 0.2s;
 }
-.button-container:hover .button::before {
-  border-right: 2rem solid var(--blue-hover);
-  transition: all 0.3s;
+.button-container:hover::before {
+  border-right-color: var(--blue-hover);
+  transition: all 0.2s;
 }
 .button,
 .button-question {
@@ -143,14 +143,143 @@
   border-left: 4rem solid var(--blue);
 }
 .correct {
-  background-color: green;
+  animation: CorrectAnswer1 4s forwards;
+}
+.correct::before,
+.correct::after {
+  animation: CorrectAnswer2 4s forwards;
 }
 .incorrect {
-  background-color: red;
+  animation: IncorrectAnswer1 4s forwards;
+}
+.incorrect::before,
+.incorrect::after {
+  animation: IncorrectAnswer2 4s forwards;
 }
 .button p {
   font-size: 1.6em;
 }
 .button-question p {
   font-size: 2em;
+}
+
+@keyframes CorrectAnswer1 {
+  20% {
+    background-color: var(--blue);
+  }
+  30% {
+    background-color: var(--green);
+  }
+  40% {
+    background-color: var(--blue);
+  }
+  50% {
+    background-color: var(--green);
+  }
+  60% {
+    background-color: var(--blue);
+  }
+  70% {
+    background-color: var(--green);
+  }
+  80% {
+    background-color: var(--blue);
+  }
+  100% {
+    background-color: var(--green);
+  }
+}
+@keyframes CorrectAnswer2 {
+  20% {
+    border-right-color: var(--blue);
+    border-left-color: var(--blue);
+  }
+  30% {
+    border-right-color: var(--green);
+    border-left-color: var(--green);
+  }
+  40% {
+    border-right-color: var(--blue);
+    border-left-color: var(--blue);
+  }
+  50% {
+    border-right-color: var(--green);
+    border-left-color: var(--green);
+  }
+  60% {
+    border-right-color: var(--blue);
+    border-left-color: var(--blue);
+  }
+  70% {
+    border-right-color: var(--green);
+    border-left-color: var(--green);
+  }
+  80% {
+    border-right-color: var(--blue);
+    border-left-color: var(--blue);
+  }
+  100% {
+    border-right-color: var(--green);
+    border-left-color: var(--green);
+  }
+}
+@keyframes IncorrectAnswer1 {
+  20% {
+    background-color: var(--blue);
+  }
+  30% {
+    background-color: var(--red);
+  }
+  40% {
+    background-color: var(--blue);
+  }
+  50% {
+    background-color: var(--red);
+  }
+  60% {
+    background-color: var(--blue);
+  }
+  70% {
+    background-color: var(--red);
+  }
+  80% {
+    background-color: var(--blue);
+  }
+  100% {
+    background-color: var(--red);
+  }
+}
+@keyframes IncorrectAnswer2 {
+  20% {
+    border-right-color: var(--blue);
+    border-left-color: var(--blue);
+  }
+  30% {
+    border-right-color: var(--red);
+    border-left-color: var(--red);
+  }
+  40% {
+    border-right-color: var(--blue);
+    border-left-color: var(--blue);
+  }
+  50% {
+    border-right-color: var(--red);
+    border-left-color: var(--red);
+  }
+  60% {
+    border-right-color: var(--blue);
+    border-left-color: var(--blue);
+  }
+  70% {
+    border-right-color: var(--red);
+    border-left-color: var(--red);
+  }
+  80% {
+    border-right-color: var(--blue);
+    border-left-color: var(--blue);
+  }
+  100% {
+    border-right-color: var(--red);
+    border-left-color: var(--red);
+  }
 }

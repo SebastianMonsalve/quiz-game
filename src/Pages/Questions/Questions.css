@@ -6,10 +6,15 @@
   align-items: center;
   flex-direction: column;
   gap: 2rem;
+  position: relative;
+  overflow: hidden;
 }
-.questions img {
+.questions .image {
   width: 15rem;
   object-fit: cover;
+  opacity: 0;
+  animation: active forwards;
+  animation-delay: 4s;
 }
 .question-box {
   display: flex;
@@ -17,6 +22,10 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  position: relative;
+  opacity: 0;
+  animation: active forwards;
+  animation-delay: 1s;
 }
 .answers-container {
   display: grid;
@@ -26,24 +35,56 @@
 }
 .chooseQuestion {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  gap: 5rem;
+  position: absolute;
+  z-index: 2;
+  top: 2.2rem;
+  right: 0;
+  transition: 0.3s all ease-in-out;
 }
-.next,
-.previous {
-  width: 3rem;
-  height: 3rem;
+.next {
+  width: 4rem;
+  height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   background-color: var(--blue-light);
   cursor: pointer;
+  opacity: 0;
+  animation: active forwards;
+  animation-delay: 3s;
 }
-.next i,
-.previous i {
+.next i {
+  padding-top: 0.2rem;
   color: var(--blue);
-  font-size: 1.5em;
+  font-size: 1.8em;
+}
+
+.transition {
+  z-index: 10;
+  position: absolute;
+  width: 30rem;
+  object-fit: cover;
+  top: 7rem;
+  animation: transition 4s forwards;
+}
+@keyframes active {
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes transition {
+  20% {
+    width: 110rem;
+    top: -25rem;
+  }
+  90% {
+    width: 15rem;
+    top: 8.2rem;
+  }
+  100% {
+    width: 15rem;
+    top: 8.2rem;
+    display: none;
+  }
 }
