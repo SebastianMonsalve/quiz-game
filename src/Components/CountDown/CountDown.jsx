@@ -10,28 +10,49 @@ const formatTime = (time) => {
   return minutes + ":" + seconds;
 };
 
-export default function CountDown({ seconds }) {
+export default function CountDown({ seconds, stopTimer, onTimeUp }) {
   const [countdown, setCountdown] = useState(seconds);
+  const [isDelayed, setIsDelayed] = useState(true);
   const timerId = useRef();
 
   useEffect(() => {
     setCountdown(seconds);
-    timerId.current = setInterval(() => {
-      setCountdown((prev) => prev - 1);
-    }, 1000);
-    return () => clearInterval(timerId.current);
+    setIsDelayed(true);
+    clearInterval(timerId.current);
+
+    const delayTimeout = setTimeout(() => {
+      setIsDelayed(false);
+      timerId.current = setInterval(() => {
+        setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
+      }, 1000);
+    }, 2000);
+
+    return () => {
+      clearTimeout(delayTimeout);
+      clearInterval(timerId.current);
+    };
   }, [seconds]);
 
   useEffect(() => {
-    if (countdown <= 0) {
+    if (stopTimer) {
       clearInterval(timerId.current);
     }
-  }, [countdown]);
+  }, [stopTimer]);
+
+  useEffect(() => {
+    if (countdown === 0) {
+      clearInterval(timerId.current);
+      if (onTimeUp) onTimeUp();
+    }
+  }, [countdown, onTimeUp]);
+
+  const countdownClass =
+    countdown <= 3 && !isDelayed ? "countdown danger" : "countdown";
 
   return (
-    <div className="countdown">
+    <div className={countdownClass}>
       <i className="fa-regular fa-clock" />
-      <p>{formatTime(countdown)}</p>
+      <p>{isDelayed ? formatTime(seconds) : formatTime(countdown)}</p>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Questions.css";
 import Button from "../../Components/Button/Button";
 import CountDown from "../../Components/CountDown/CountDown";
+import TimeLine from "../../Components/TimeLine/TimeLine";
 import { QuestionsData } from "./QuestionsData";
 
 const Questions = () => {
@@ -9,6 +10,7 @@ const Questions = () => {
   const [answersStatus, setAnswersStatus] = useState({});
   const [disableAnswers, setDisableAnswers] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
+  const [stopTimer, setStopTimer] = useState(false);
 
   const playAudio = (src) => {
     const audio = new Audio(src);
@@ -26,6 +28,7 @@ const Questions = () => {
       playAudio("/Correct.mp3");
       setDisableAnswers(true);
       setShowNextButton(true);
+      setStopTimer(true);
     } else {
       newAnswersStatus[index] = "incorrect";
       playAudio("/Incorrect.mp3");
@@ -41,17 +44,34 @@ const Questions = () => {
         setAnswersStatus({});
         setDisableAnswers(false);
         setShowNextButton(false);
+        setStopTimer(false);
         return prevIndex + 1;
       }
       return prevIndex;
     });
   };
 
+  const handleTimeUp = () => {
+    playAudio("/Incorrect.mp3");
+    setDisableAnswers(true);
+    setShowNextButton(true);
+  };
+
   const currentQuestion = QuestionsData[currentQuestionIndex];
+  const questionCount = QuestionsData.length;
 
   return (
     <div className="questions">
-      <CountDown key={currentQuestionIndex} seconds={60} />
+      <TimeLine
+        questionCount={questionCount}
+        currentQuestionIndex={currentQuestionIndex}
+      />
+      <CountDown
+        key={currentQuestionIndex}
+        seconds={20}
+        stopTimer={stopTimer}
+        onTimeUp={handleTimeUp}
+      />
       <img
         src="/Logo.webp"
         alt="Logo"

@@ -16,4 +16,20 @@
   background-color: var(--blue);
   border: 0.3rem solid var(--blue-light);
   border-top: none;
+  transform: translateY(-4rem);
+  animation: countTrans 3s forwards;
+}
+
+.countdown.danger {
+  background-color: var(--red);
+  color: white;
+}
+
+@keyframes countTrans {
+  60% {
+    transform: translateY(-4rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

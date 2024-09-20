@@ -68,6 +68,7 @@
   top: 7rem;
   animation: transition 4s forwards;
 }
+
 @keyframes active {
   100% {
     opacity: 1;

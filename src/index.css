@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
   --blue: #26238b;
-  --blue-hover: #141156;
+  --blue-hover: #013e76;
   --blue-light: #b5e7ff;
   --purple: #2f106d;
   --green: #007531;
   --red: #b80707;
+  --yellow: #e1b524;
 }
 * {
   padding: 0;
