@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import "./TimeLine.css";
 
 const TimeLine = ({ questionCount, currentQuestionIndex }) => {
   const [numbers, setNumbers] = useState([]);
-  const amounts = [];
-  let baseAmount = 100000;
 
-  for (let i = 0; i < questionCount; i++) {
-    amounts.push(baseAmount);
-    baseAmount *= 2;
-  }
+  // Memoriza amounts para que no se recalculen en cada render
+  const amounts = useMemo(() => {
+    const newAmounts = [];
+    let baseAmount = 100000;
+    for (let i = 0; i < questionCount; i++) {
+      newAmounts.push(baseAmount);
+      baseAmount *= 2;
+    }
+    return newAmounts;
+  }, [questionCount]);
 
   useEffect(() => {
     const initialNumbers = amounts.map((_, index) => index + 1);

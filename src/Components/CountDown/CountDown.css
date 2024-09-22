@@ -18,6 +18,7 @@
   border: 0.3rem solid var(--blue-light);
   border-top: none;
   transform: translateY(-4rem);
+  z-index: 3;
   animation: countTrans 3s forwards;
 }
 
@@ -29,6 +30,30 @@
 @keyframes countTrans {
   60% {
     transform: translateY(-4rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.extra-time {
+  position: absolute;
+  color: var(--blue-light);
+  top: 0;
+  font-size: 1.2em;
+  font-weight: 600;
+  z-index: 0;
+  animation: fade 2s forwards;
+}
+@keyframes fade {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(3.8rem);
+  }
+  90% {
+    transform: translateY(3.8rem);
   }
   100% {
     transform: translateY(0);

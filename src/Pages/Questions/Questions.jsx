@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Questions.css";
 import Button from "../../Components/Button/Button";
 import CountDown from "../../Components/CountDown/CountDown";
@@ -19,6 +19,9 @@ const Questions = () => {
   const [isTeacherModalOpen, setIsTeacherModalOpen] = useState(false);
   const [isFriendModalOpen, setIsFriendModalOpen] = useState(false);
   const [isPublicModalOpen, setIsPublicModalOpen] = useState(false);
+  const [timeUpSoundPlayed, setTimeUpSoundPlayed] = useState(false); // Nueva bandera
+
+  const addTimeRef = useRef(null);
 
   const playAudio = (src) => {
     const audio = new Audio(src);
@@ -53,6 +56,7 @@ const Questions = () => {
         setShowNextButton(false);
         setStopTimer(false);
         setHiddenOptions([]);
+        setTimeUpSoundPlayed(false); // Restablece la bandera para la próxima pregunta
         return prevIndex + 1;
       }
       return prevIndex;
@@ -60,7 +64,11 @@ const Questions = () => {
   };
 
   const handleTimeUp = () => {
-    playAudio("/Incorrect.mp3");
+    if (!timeUpSoundPlayed) {
+      // Solo reproducir sonido si no se ha reproducido ya
+      playAudio("/Incorrect.mp3");
+      setTimeUpSoundPlayed(true); // Marca que el sonido ya fue reproducido
+    }
     setShowNextButton(true);
   };
 
@@ -78,16 +86,25 @@ const Questions = () => {
   const handleCallToTeacher = () => {
     setIsTeacherModalOpen(true);
     playAudio("/Call.mp3");
+    if (addTimeRef.current) {
+      addTimeRef.current(20);
+    }
   };
 
   const handleCallToFriend = () => {
     setIsFriendModalOpen(true);
     playAudio("/Call.mp3");
+    if (addTimeRef.current) {
+      addTimeRef.current(20);
+    }
   };
 
   const handlePublicHelp = () => {
     setIsPublicModalOpen(true);
     playAudio("/Public.mp3");
+    if (addTimeRef.current) {
+      addTimeRef.current(20);
+    }
   };
 
   const handleCloseCallToTeacher = () => {
@@ -125,6 +142,7 @@ const Questions = () => {
         seconds={30}
         stopTimer={stopTimer}
         onTimeUp={handleTimeUp}
+        addTimeRef={addTimeRef}
       />
       <img
         src="/Logo.webp"
