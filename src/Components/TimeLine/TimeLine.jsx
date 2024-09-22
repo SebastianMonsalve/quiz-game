@@ -4,7 +4,7 @@ import "./TimeLine.css";
 const TimeLine = ({ questionCount, currentQuestionIndex }) => {
   const [numbers, setNumbers] = useState([]);
   const amounts = [];
-  let baseAmount = 10000;
+  let baseAmount = 100000;
 
   for (let i = 0; i < questionCount; i++) {
     amounts.push(baseAmount);

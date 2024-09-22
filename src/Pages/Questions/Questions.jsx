@@ -3,6 +3,7 @@ import "./Questions.css";
 import Button from "../../Components/Button/Button";
 import CountDown from "../../Components/CountDown/CountDown";
 import TimeLine from "../../Components/TimeLine/TimeLine";
+import Joker from "../../Components/Joker/Joker";
 import { QuestionsData } from "./QuestionsData";
 
 const Questions = () => {
@@ -33,7 +34,6 @@ const Questions = () => {
       newAnswersStatus[index] = "incorrect";
       playAudio("/Incorrect.mp3");
     }
-
     setAnswersStatus(newAnswersStatus);
   };
 
@@ -53,7 +53,7 @@ const Questions = () => {
 
   const handleTimeUp = () => {
     playAudio("/Incorrect.mp3");
-    setDisableAnswers(true);
+    // setDisableAnswers(true);
     setShowNextButton(true);
   };
 
@@ -66,9 +66,10 @@ const Questions = () => {
         questionCount={questionCount}
         currentQuestionIndex={currentQuestionIndex}
       />
+      <Joker />
       <CountDown
         key={currentQuestionIndex}
-        seconds={20}
+        seconds={30}
         stopTimer={stopTimer}
         onTimeUp={handleTimeUp}
       />

@@ -1,0 +1,52 @@
+.wildcard-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.wildcard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  height: 3rem;
+  background-color: var(--blue);
+  border: 0.2rem solid var(--blue-light);
+  border-radius: 1rem;
+  color: var(--blue-light);
+  font-size: 1.5em;
+  position: relative;
+  cursor: pointer;
+  transition: 0.1s all;
+  pointer-events: all;
+  overflow: hidden;
+}
+
+.name-wildcard {
+  color: var(--blue-light);
+  margin-top: 0.4rem;
+  font-size: 0.8em;
+}
+.wildcard:hover {
+  border-color: var(--blue-hover);
+  transition: 0.1s all;
+}
+
+.disabled {
+  pointer-events: none;
+  border: none;
+}
+.disabled::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: disabled 30s forwards;
+}
+@keyframes disabled {
+  100% {
+    transform: translateX(-100%);
+  }
+}

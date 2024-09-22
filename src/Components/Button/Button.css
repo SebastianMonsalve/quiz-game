@@ -66,15 +66,15 @@
 
 .button-container:hover {
   background-color: var(--blue-hover);
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 .button-container:hover::after {
   border-left-color: var(--blue-hover);
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 .button-container:hover::before {
   border-right-color: var(--blue-hover);
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 .button,
 .button-question {
@@ -114,8 +114,8 @@
 
 .button-question::before,
 .button-question::after {
-  border-top: 4rem solid transparent;
-  border-bottom: 4rem solid transparent;
+  border-top: 4.05rem solid transparent;
+  border-bottom: 4.05rem solid transparent;
 }
 
 .button::before {
@@ -127,7 +127,7 @@
 .button-question::before {
   z-index: 1;
   top: 0;
-  left: -4rem;
+  left: -3.9rem;
   border-right: 4rem solid var(--blue);
 }
 .button::after {
@@ -139,25 +139,25 @@
 .button-question::after {
   z-index: 1;
   top: 0;
-  right: -4rem;
+  right: -3.9rem;
   border-left: 4rem solid var(--blue);
 }
 .correct {
-  animation: CorrectAnswer1 4s forwards;
+  animation: CorrectAnswer1 3s forwards;
 }
 .correct::before,
 .correct::after {
-  animation: CorrectAnswer2 4s forwards;
+  animation: CorrectAnswer2 3s forwards;
 }
 .incorrect {
-  animation: IncorrectAnswer1 4s forwards;
+  animation: IncorrectAnswer1 3s forwards;
 }
 .incorrect::before,
 .incorrect::after {
-  animation: IncorrectAnswer2 4s forwards;
+  animation: IncorrectAnswer2 3s forwards;
 }
 .button p {
-  font-size: 1.6em;
+  font-size: 1.5em;
 }
 .button-question p {
   font-size: 2em;

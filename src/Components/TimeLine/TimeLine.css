@@ -10,14 +10,14 @@
 }
 .timeline {
   width: 100%;
-  height: 80%;
+  height: 90%;
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-between;
   align-items: center;
   cursor: default;
   position: relative;
-  transform: translateX(15rem);
+  transform: translateX(16rem);
   animation: trans 3s forwards;
 }
 .line {
@@ -29,7 +29,7 @@
   background-color: var(--yellow);
 }
 .cost {
-  width: 10rem;
+  width: 11rem;
   height: 2rem;
   display: flex;
   align-items: center;
@@ -80,7 +80,7 @@
 
 @keyframes trans {
   60% {
-    transform: translateX(15rem);
+    transform: translateX(16rem);
   }
   100% {
     transform: translateX(0);

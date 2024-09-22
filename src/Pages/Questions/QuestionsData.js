@@ -1,77 +1,151 @@
 export const QuestionsData = [
   {
     id: 1,
-    question: "¿Cuál es el río más largo del mundo?",
-    options: ["Nilo", "Amazonas", "Yangtsé", "Misisipi"],
-    correct_answer: "Amazonas",
+    question:
+      "¿Quién fue el fundador de la teoría de la evolución que también estudió las expresiones faciales relacionadas con las emociones?",
+    options: [
+      "Sigmund Freud",
+      "Charles Darwin",
+      "Albert Einstein",
+      "Carl Jung",
+    ],
+    correct_answer: "Charles Darwin",
   },
   {
     id: 2,
-    question: "¿En qué año llegó el hombre a la luna?",
-    options: ["1965", "1969", "1972", "1958"],
-    correct_answer: "1969",
+    question:
+      "¿Qué buscaba Charles Darwin al analizar las expresiones faciales en humanos y animales?",
+    options: [
+      "Comprender la comunicación verbal",
+      "Apoyar su teoría sobre el origen común de las especies",
+      "Desarrollar técnicas de terapia",
+      "Estudiar el comportamiento social",
+    ],
+    correct_answer: "Apoyar su teoría sobre el origen común de las especies",
   },
   {
     id: 3,
-    question: "¿Quién pintó la Mona Lisa?",
+    question:
+      "¿Qué hallazgos realizaron Randy Buckner y su equipo respecto al procesamiento de palabras en el cerebro?",
     options: [
-      "Pablo Picasso",
-      "Vincent van Gogh",
-      "Leonardo da Vinci",
-      "Claude Monet",
+      "La corteza visual es la única responsable",
+      "Las áreas frontales responden con menor intensidad a palabras repetidas",
+      "Solo los estímulos acústicos son procesados",
+      "El cerebro no se adapta a palabras familiares",
     ],
-    correct_answer: "Leonardo da Vinci",
+    correct_answer:
+      "Las áreas frontales responden con menor intensidad a palabras repetidas",
   },
   {
     id: 4,
-    question: "¿Cuál es el país más grande del mundo?",
-    options: ["Canadá", "China", "Rusia", "Estados Unidos"],
-    correct_answer: "Rusia",
+    question:
+      "¿Qué áreas cerebrales identificaron Vuilleumier y su equipo como relevantes para el reconocimiento de emociones?",
+    options: [
+      "Corteza visual y cerebelo",
+      "Corteza prefrontal medial y surco temporal superior",
+      "Amígdala y área fusiforme",
+      "Núcleo caudado y putamen",
+    ],
+    correct_answer: "Corteza prefrontal medial y surco temporal superior",
   },
   {
     id: 5,
-    question: "¿Quién escribió 'Cien años de soledad'?",
+    question:
+      "Según el documento, ¿cuál es un método adecuado para estudiar el tiempo de actividad cerebral?",
     options: [
-      "Gabriel García Márquez",
-      "Mario Vargas Llosa",
-      "Julio Cortázar",
-      "Jorge Luis Borges",
+      "Tomografía computarizada",
+      "Resonancia magnética",
+      "Electroencefalografía (EEG)",
+      "Análisis de sangre",
     ],
-    correct_answer: "Gabriel García Márquez",
+    correct_answer: "Electroencefalografía (EEG)",
   },
   {
     id: 6,
-    question: "¿Cuál es el planeta más grande del sistema solar?",
-    options: ["Saturno", "Júpiter", "Neptuno", "Urano"],
-    correct_answer: "Júpiter",
+    question:
+      "¿Qué descubrieron los investigadores sobre la conexión de estímulos emocionales en 2010?",
+    options: [
+      "No se necesita integración de señales",
+      "La activación depende de la modalidad sensorial",
+      "Las áreas cerebrales responden de manera independiente de la modalidad sensorial",
+      "Solo los estímulos visuales son importantes",
+    ],
+    correct_answer:
+      "Las áreas cerebrales responden de manera independiente de la modalidad sensorial",
   },
   {
     id: 7,
-    question: "¿Qué elemento químico tiene el símbolo 'O'?",
-    options: ["Oxígeno", "Oro", "Osmio", "Oganesón"],
-    correct_answer: "Oxígeno",
+    question:
+      "En el estudio de Molholm, ¿qué diferencias se observaron en las activaciones neuronales?",
+    options: [
+      "Eran iguales sin importar el tipo de estímulo",
+      "Se activaban más rápido para estímulos visuales que acústicos",
+      "La activación dependía del tipo de sonido",
+      "Se diferenciaban en pocos milisegundos entre estímulos simultáneos y separados",
+    ],
+    correct_answer:
+      "Se diferenciaban en pocos milisegundos entre estímulos simultáneos y separados",
   },
   {
     id: 8,
-    question: "¿En qué continente se encuentra Egipto?",
-    options: ["Asia", "Europa", "África", "Oceanía"],
-    correct_answer: "África",
+    question:
+      "¿Cómo conectan los modelos de arriba abajo y de abajo arriba según Campanella y Bellin?",
+    options: [
+      "No se conectan",
+      "Ambas modalidades son irrelevantes",
+      "Se procesan de forma jerárquica, integrando estímulos visuales y acústicos",
+      "Solo se procesan de forma individual",
+    ],
+    correct_answer:
+      "Se procesan de forma jerárquica, integrando estímulos visuales y acústicos",
   },
   {
     id: 9,
-    question: "¿Quién desarrolló la teoría de la relatividad?",
+    question:
+      "¿Qué se observó cuando la mímica y el estímulo complementario eran congruentes?",
     options: [
-      "Isaac Newton",
-      "Albert Einstein",
-      "Galileo Galilei",
-      "Nikola Tesla",
+      "No había cambios en la reacción",
+      "Los sujetos reaccionaban más lentamente",
+      "Los participantes reaccionaban más rápido",
+      "La actividad cerebral se desactivaba",
     ],
-    correct_answer: "Albert Einstein",
+    correct_answer: "Los participantes reaccionaban más rápido",
   },
   {
     id: 10,
-    question: "¿Qué deporte se practica con una pelota y un bate?",
-    options: ["Cricket", "Béisbol", "Rugby", "Hockey"],
-    correct_answer: "Béisbol",
+    question:
+      "¿Cuál es el papel de la amígdala en el procesamiento emocional según el documento?",
+    options: [
+      "Inhibe el reconocimiento emocional",
+      "Integra información emocional y facilita su procesamiento",
+      "Solo se activa en situaciones de peligro",
+      "No tiene relación con las emociones",
+    ],
+    correct_answer: "Integra información emocional y facilita su procesamiento",
+  },
+  {
+    id: 11,
+    question:
+      "¿En qué tipo de situaciones el cerebro utiliza procesos de abajo arriba?",
+    options: [
+      "Cuando los estímulos son familiares",
+      "Al reaccionar rápidamente a estímulos simultáneos",
+      "En situaciones emocionales complejas",
+      "Cuando hay distracciones presentes",
+    ],
+    correct_answer: "Al reaccionar rápidamente a estímulos simultáneos",
+  },
+  {
+    id: 12,
+    question:
+      "¿Qué se demuestra al observar la actividad en el área fusiforme facial en relación con olores?",
+    options: [
+      "La actividad no se ve afectada por olores",
+      "Los olores no influyen en el procesamiento visual",
+      "La actividad en el área fusiforme aumenta con estímulos congruentes",
+      "Los olores moderan la actividad en el área fusiforme, facilitando el procesamiento",
+    ],
+    correct_answer:
+      "Los olores moderan la actividad en el área fusiforme, facilitando el procesamiento",
   },
 ];
