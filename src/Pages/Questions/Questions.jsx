@@ -4,6 +4,9 @@ import Button from "../../Components/Button/Button";
 import CountDown from "../../Components/CountDown/CountDown";
 import TimeLine from "../../Components/TimeLine/TimeLine";
 import Joker from "../../Components/Joker/Joker";
+import ModalTeacher from "../../Components/ModalTeacher/ModalTeacher";
+import ModalFriend from "../../Components/ModalFriend/ModalFriend";
+import ModalPublic from "../../Components/ModalPublic/ModalPublic";
 import { QuestionsData } from "./QuestionsData";
 
 const Questions = () => {
@@ -12,6 +15,10 @@ const Questions = () => {
   const [disableAnswers, setDisableAnswers] = useState(false);
   const [showNextButton, setShowNextButton] = useState(false);
   const [stopTimer, setStopTimer] = useState(false);
+  const [hiddenOptions, setHiddenOptions] = useState([]);
+  const [isTeacherModalOpen, setIsTeacherModalOpen] = useState(false);
+  const [isFriendModalOpen, setIsFriendModalOpen] = useState(false);
+  const [isPublicModalOpen, setIsPublicModalOpen] = useState(false);
 
   const playAudio = (src) => {
     const audio = new Audio(src);
@@ -45,6 +52,7 @@ const Questions = () => {
         setDisableAnswers(false);
         setShowNextButton(false);
         setStopTimer(false);
+        setHiddenOptions([]);
         return prevIndex + 1;
       }
       return prevIndex;
@@ -53,8 +61,48 @@ const Questions = () => {
 
   const handleTimeUp = () => {
     playAudio("/Incorrect.mp3");
-    // setDisableAnswers(true);
     setShowNextButton(true);
+  };
+
+  const handleRemoveTwoOptions = () => {
+    const correctAnswer = QuestionsData[currentQuestionIndex].correct_answer;
+    const incorrectOptions = QuestionsData[currentQuestionIndex].options.filter(
+      (option) => option !== correctAnswer
+    );
+    const optionsToHide = incorrectOptions
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 2);
+    setHiddenOptions(optionsToHide);
+  };
+
+  const handleCallToTeacher = () => {
+    setIsTeacherModalOpen(true);
+    playAudio("/Call.mp3");
+  };
+
+  const handleCallToFriend = () => {
+    setIsFriendModalOpen(true);
+    playAudio("/Call.mp3");
+  };
+
+  const handlePublicHelp = () => {
+    setIsPublicModalOpen(true);
+    playAudio("/Public.mp3");
+  };
+
+  const handleCloseCallToTeacher = () => {
+    setIsTeacherModalOpen(false);
+    playAudio("/HangUp.mp3");
+  };
+
+  const handleCloseCallToFriend = () => {
+    setIsFriendModalOpen(false);
+    playAudio("/HangUp.mp3");
+  };
+
+  const handleClosePublicHelp = () => {
+    setIsPublicModalOpen(false);
+    playAudio("/fifty.mp3");
   };
 
   const currentQuestion = QuestionsData[currentQuestionIndex];
@@ -66,7 +114,12 @@ const Questions = () => {
         questionCount={questionCount}
         currentQuestionIndex={currentQuestionIndex}
       />
-      <Joker />
+      <Joker
+        removeTwoOptions={handleRemoveTwoOptions}
+        callToTeacher={handleCallToTeacher}
+        callToFriend={handleCallToFriend}
+        publicHelp={handlePublicHelp}
+      />
       <CountDown
         key={currentQuestionIndex}
         seconds={30}
@@ -89,12 +142,15 @@ const Questions = () => {
               name={String.fromCharCode(65 + index) + ": " + option}
               onClick={() => handleAnswerClick(option, index)}
               colorClass={
-                answersStatus[index] === "correct"
+                hiddenOptions.includes(option)
+                  ? "hidden"
+                  : answersStatus[index] === "correct"
                   ? "correct"
                   : answersStatus[index] === "incorrect"
                   ? "incorrect"
                   : ""
               }
+              disabled={hiddenOptions.includes(option)}
             />
           ))}
         </div>
@@ -110,6 +166,12 @@ const Questions = () => {
           )}
         </div>
       </div>
+
+      {isTeacherModalOpen && (
+        <ModalTeacher onClose={handleCloseCallToTeacher} />
+      )}
+      {isFriendModalOpen && <ModalFriend onClose={handleCloseCallToFriend} />}
+      {isPublicModalOpen && <ModalPublic onClose={handleClosePublicHelp} />}
     </div>
   );
 };

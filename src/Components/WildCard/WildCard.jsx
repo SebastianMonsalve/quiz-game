@@ -7,6 +7,10 @@ const WildCard = ({ icon, text, onClick }) => {
   const handleClick = () => {
     if (isDisabled) return;
 
+    if (onClick) {
+      onClick();
+    }
+
     setIsDisabled(true);
     setTimeout(() => {
       setIsDisabled(false);

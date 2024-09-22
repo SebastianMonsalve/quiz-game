@@ -69,6 +69,10 @@
   animation: transition 4s forwards;
 }
 
+.hidden p {
+  visibility: hidden;
+}
+
 @keyframes active {
   100% {
     opacity: 1;
