@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./Questions.css";
 import Button from "../../Components/Button/Button";
 import CountDown from "../../Components/CountDown/CountDown";
@@ -7,6 +7,7 @@ import Joker from "../../Components/Joker/Joker";
 import ModalTeacher from "../../Components/ModalTeacher/ModalTeacher";
 import ModalFriend from "../../Components/ModalFriend/ModalFriend";
 import ModalPublic from "../../Components/ModalPublic/ModalPublic";
+import Statistics from "../../Components/Statistics/Statistics";
 import { QuestionsData } from "./QuestionsData";
 
 const Questions = () => {
@@ -19,14 +20,30 @@ const Questions = () => {
   const [isTeacherModalOpen, setIsTeacherModalOpen] = useState(false);
   const [isFriendModalOpen, setIsFriendModalOpen] = useState(false);
   const [isPublicModalOpen, setIsPublicModalOpen] = useState(false);
-  const [timeUpSoundPlayed, setTimeUpSoundPlayed] = useState(false); // Nueva bandera
+  const [isStatisticsModalOpen, setIsStatisticsModalOpen] = useState(false);
+  const [timeUpSoundPlayed, setTimeUpSoundPlayed] = useState(false);
 
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+  const [publicHelpUsed, setPublicHelpUsed] = useState(0);
+  const [friendHelpUsed, setFriendHelpUsed] = useState(0);
+  const [teacherHelpUsed, setTeacherHelpUsed] = useState(0);
+  const [fiftyFiftyUsed, setFiftyFiftyUsed] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
   const addTimeRef = useRef(null);
 
   const playAudio = (src) => {
     const audio = new Audio(src);
     audio.play();
   };
+
+  useEffect(() => {
+    const startTime = Date.now();
+    return () => {
+      const endTime = Date.now();
+      setTotalTime((prevTime) => prevTime + (endTime - startTime) / 1000);
+    };
+  }, [currentQuestionIndex]);
 
   const handleAnswerClick = (selectedOption, index) => {
     if (disableAnswers) return;
@@ -40,34 +57,34 @@ const Questions = () => {
       setDisableAnswers(true);
       setShowNextButton(true);
       setStopTimer(true);
+      setCorrectAnswers((prev) => prev + 1);
     } else {
       newAnswersStatus[index] = "incorrect";
       playAudio("/Incorrect.mp3");
+      setIncorrectAnswers((prev) => prev + 1);
     }
     setAnswersStatus(newAnswersStatus);
   };
 
   const handleNext = () => {
-    setCurrentQuestionIndex((prevIndex) => {
-      if (prevIndex < QuestionsData.length - 1) {
+    if (currentQuestionIndex < QuestionsData.length - 1) {
+      setCurrentQuestionIndex((prevIndex) => {
         playAudio("/Question.mp3");
         setAnswersStatus({});
         setDisableAnswers(false);
         setShowNextButton(false);
         setStopTimer(false);
         setHiddenOptions([]);
-        setTimeUpSoundPlayed(false); // Restablece la bandera para la próxima pregunta
+        setTimeUpSoundPlayed(false);
         return prevIndex + 1;
-      }
-      return prevIndex;
-    });
+      });
+    }
   };
 
   const handleTimeUp = () => {
     if (!timeUpSoundPlayed) {
-      // Solo reproducir sonido si no se ha reproducido ya
       playAudio("/Incorrect.mp3");
-      setTimeUpSoundPlayed(true); // Marca que el sonido ya fue reproducido
+      setTimeUpSoundPlayed(true);
     }
     setShowNextButton(true);
   };
@@ -81,6 +98,7 @@ const Questions = () => {
       .sort(() => 0.5 - Math.random())
       .slice(0, 2);
     setHiddenOptions(optionsToHide);
+    setFiftyFiftyUsed((prev) => prev + 1);
   };
 
   const handleCallToTeacher = () => {
@@ -89,6 +107,7 @@ const Questions = () => {
     if (addTimeRef.current) {
       addTimeRef.current(20);
     }
+    setTeacherHelpUsed((prev) => prev + 1);
   };
 
   const handleCallToFriend = () => {
@@ -97,6 +116,7 @@ const Questions = () => {
     if (addTimeRef.current) {
       addTimeRef.current(20);
     }
+    setFriendHelpUsed((prev) => prev + 1);
   };
 
   const handlePublicHelp = () => {
@@ -105,6 +125,12 @@ const Questions = () => {
     if (addTimeRef.current) {
       addTimeRef.current(20);
     }
+    setPublicHelpUsed((prev) => prev + 1);
+  };
+
+  const handleFinish = () => {
+    setIsStatisticsModalOpen(true);
+    playAudio("/Statistics.mp3");
   };
 
   const handleCloseCallToTeacher = () => {
@@ -176,10 +202,22 @@ const Questions = () => {
           {showNextButton && (
             <div
               className="next"
-              onClick={handleNext}
-              title="Siguiente Pregunta"
+              onClick={
+                currentQuestionIndex === questionCount - 1
+                  ? handleFinish
+                  : handleNext
+              }
+              title={
+                currentQuestionIndex === questionCount - 1
+                  ? "Finalizar"
+                  : "Siguiente Pregunta"
+              }
             >
-              <i className="fa-solid fa-angle-right" />
+              {currentQuestionIndex === questionCount - 1 ? (
+                <i className="fa-solid fa-flag-checkered" />
+              ) : (
+                <i className="fa-solid fa-angle-right" />
+              )}
             </div>
           )}
         </div>
@@ -190,6 +228,17 @@ const Questions = () => {
       )}
       {isFriendModalOpen && <ModalFriend onClose={handleCloseCallToFriend} />}
       {isPublicModalOpen && <ModalPublic onClose={handleClosePublicHelp} />}
+      {isStatisticsModalOpen && (
+        <Statistics
+          correctAnswers={correctAnswers}
+          incorrectAnswers={incorrectAnswers}
+          publicHelpUsed={publicHelpUsed}
+          friendHelpUsed={friendHelpUsed}
+          teacherHelpUsed={teacherHelpUsed}
+          fiftyFiftyUsed={fiftyFiftyUsed}
+          totalTime={totalTime}
+        />
+      )}
     </div>
   );
 };

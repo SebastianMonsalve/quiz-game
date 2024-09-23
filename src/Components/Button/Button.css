@@ -121,7 +121,7 @@
 .button::before {
   z-index: 1;
   top: 0;
-  left: -2rem;
+  left: -1.95rem;
   border-right: 2rem solid var(--blue);
 }
 .button-question::before {
@@ -133,7 +133,7 @@
 .button::after {
   z-index: 1;
   top: 0;
-  right: -2rem;
+  right: -1.95rem;
   border-left: 2rem solid var(--blue);
 }
 .button-question::after {

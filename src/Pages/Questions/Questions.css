@@ -51,8 +51,8 @@
   background-color: var(--blue-light);
   cursor: pointer;
   opacity: 0;
-  animation: active forwards;
-  animation-delay: 2.5s;
+  animation: active 1s forwards;
+  animation-delay: 2s;
 }
 .next i {
   padding-top: 0.2rem;

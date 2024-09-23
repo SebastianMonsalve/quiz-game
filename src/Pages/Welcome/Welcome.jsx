@@ -20,6 +20,8 @@ const Welcome = () => {
   };
   return (
     <div className="welcome">
+      <div className="bg"></div>
+      {/* <img src="/stars.webp" alt="stars" className="bg" /> */}
       <img
         src="/Logo.webp"
         alt="Quien quiere ser millonario logo"

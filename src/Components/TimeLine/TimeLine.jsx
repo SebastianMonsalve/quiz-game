@@ -4,7 +4,6 @@ import "./TimeLine.css";
 const TimeLine = ({ questionCount, currentQuestionIndex }) => {
   const [numbers, setNumbers] = useState([]);
 
-  // Memoriza amounts para que no se recalculen en cada render
   const amounts = useMemo(() => {
     const newAmounts = [];
     let baseAmount = 100000;

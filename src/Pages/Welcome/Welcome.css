@@ -8,6 +8,15 @@
   justify-content: center;
   position: relative;
 }
+.bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url("/stars.webp");
+  background-size: contain;
+  opacity: 0.2;
+}
 .logo {
   width: 30rem;
   object-fit: cover;

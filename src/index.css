@@ -15,6 +15,10 @@
   text-decoration: none;
   list-style: none;
 }
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--blue-light) var(--blue);
+}
 body {
   font-family: "Montserrat", sans-serif;
   font-size: 100%;

@@ -30,15 +30,14 @@ export default function CountDown({
   };
 
   useEffect(() => {
-    // Resetear el temporizador al recibir nuevos segundos
     setCountdown(seconds);
     setIsDelayed(true);
     clearInterval(timerId.current);
 
     const delayTimeout = setTimeout(() => {
       setIsDelayed(false);
-      setTimeUpSoundPlayed(false); // Permite que el sonido vuelva a sonar si llega a 0
-      startTimer(); // Iniciar el temporizador
+      setTimeUpSoundPlayed(false);
+      startTimer();
     }, 2000);
 
     return () => {
@@ -48,24 +47,21 @@ export default function CountDown({
   }, [seconds]);
 
   useEffect(() => {
-    // Detener el temporizador si `stopTimer` es verdadero
     if (stopTimer) {
       clearInterval(timerId.current);
     }
   }, [stopTimer]);
 
   useEffect(() => {
-    // Verificar si el temporizador ha llegado a 0 y reproducir sonido si no lo ha hecho
     if (countdown === 0 && !timeUpSoundPlayed) {
       clearInterval(timerId.current);
 
-      setTimeUpSoundPlayed(true); // Marca que el sonido ya ha sido reproducido
-      if (onTimeUp) onTimeUp(); // Llama a la función de "tiempo agotado"
+      setTimeUpSoundPlayed(true);
+      if (onTimeUp) onTimeUp();
     }
   }, [countdown, onTimeUp, timeUpSoundPlayed]);
 
   useEffect(() => {
-    // Añadir tiempo adicional al temporizador y manejar la lógica del reinicio
     if (addTimeRef) {
       addTimeRef.current = (additionalSeconds) => {
         setExtraTimeMessage(`+${additionalSeconds}s`);
@@ -74,10 +70,9 @@ export default function CountDown({
           setCountdown((prev) => {
             const newTime = prev + additionalSeconds;
 
-            // Si el tiempo adicional se agrega cuando el contador está en 0
             if (prev === 0 && additionalSeconds > 0) {
-              setTimeUpSoundPlayed(false); // Resetear para que el sonido pueda reproducirse nuevamente
-              startTimer(); // Reiniciar el temporizador
+              setTimeUpSoundPlayed(false);
+              startTimer();
             }
 
             return newTime;
